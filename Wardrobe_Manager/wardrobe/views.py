@@ -3,16 +3,19 @@ from .models import Clothitem
 from .models import Outfit
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
+
 
 
 def home(request):
     return render(request,'wardrobe/home.html')
 
-
+@login_required
 def closet(request):
     clothes = Clothitem.objects.filter(owner = request.user)
     return render(request, 'wardrobe/closet.html', {'clothes': clothes})
 
+@login_required
 def outfit(request):
     outfit = Outfit.objects.filter(owner= request.user)
     return render(request, 'wardrobe/outfit.html', {'outfits': outfit})
@@ -48,4 +51,5 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('login')
+
     
