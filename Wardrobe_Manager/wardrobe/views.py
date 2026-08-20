@@ -2,11 +2,12 @@ from django.shortcuts import render,redirect
 from .models import Clothitem
 from .models import Outfit
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 
 
 def home(request):
     return render(request,'wardrobe/home.html')
+
 
 def closet(request):
     clothes = Clothitem.objects.filter(owner = request.user)
@@ -44,6 +45,7 @@ def user_login(request):
             print('try again')
     return render(request, 'wardrobe/login.html')
     
-   
-
+def user_logout(request):
+    logout(request)
+    return redirect('login')
     
