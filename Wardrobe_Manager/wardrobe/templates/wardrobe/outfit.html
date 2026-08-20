@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>outfitpage</title>
+</head>
+<body>
+    <h2>Your Outfits</h2>
+    <p>The  outfits are displayed here </p>
+
+   {% for outfit in outfits %}
+
+    <h3>{{ outfit.name }}</h3>
+
+    {% for cloth in outfit.items.all %}
+        <p>{{ cloth }}</p>
+    {% endfor %}
+
+{% endfor %}
+</body>
+</html>

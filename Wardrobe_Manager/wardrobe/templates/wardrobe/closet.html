@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>closetpage</title>
+</head>
+<body>
+    <h2>Your Closet</h2>
+    <p>The  clothing items are displayed here</p>
+    {% for cloth in clothes %}
+        <br>{{cloth.name}}
+    {% endfor %}
+</body>
+</html>
