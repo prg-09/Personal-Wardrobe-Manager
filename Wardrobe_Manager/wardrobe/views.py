@@ -96,3 +96,21 @@ def edit_clothing(request, id):
         "wardrobe/edit_clothing.html",
         {"form": form}
     )
+    
+@login_required
+def delete_clothing(request, id):
+    clothing = get_object_or_404(
+        Clothitem,
+        id=id,
+        owner=request.user
+    )
+
+    if request.method == "POST":
+        clothing.delete()
+        return redirect("closet")
+
+    return render(
+        request,
+        "wardrobe/delete_clothing.html",
+        {"clothing": clothing}
+    )
