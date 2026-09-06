@@ -16,12 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
-from wardrobe import views
-
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.urls import path
+from wardrobe import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,7 +28,8 @@ urlpatterns = [
     path('outfit/', views.outfit, name = 'outfit'),
     path('register/', views.register, name= 'register'),
     path('login/',views.user_login, name = 'login'),
-    path('logout/',views.user_logout,name='logout')
+    path('logout/',views.user_logout,name='logout'),
+    path("add-clothing/", views.add_clothing, name="add_clothing"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

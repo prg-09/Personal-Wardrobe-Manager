@@ -4,7 +4,7 @@ from .models import Outfit
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-
+from .forms import ClothitemForm
 
 
 def home(request):
@@ -52,4 +52,20 @@ def user_logout(request):
     logout(request)
     return redirect('login')
 
-    
+
+@login_required
+def add_clothing(request):
+    if request.method == "POST":
+        form = ClothitemForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            clothing = form.save(commit=False)
+            clothing.owner = request.user
+            clothing.save()
+
+            return redirect("closet")
+
+    else:
+        form = ClothitemForm()
+
+    return render(request, "wardrobe/add_clothing.html", {"form": form})
