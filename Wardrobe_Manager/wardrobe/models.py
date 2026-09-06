@@ -7,6 +7,9 @@ class Clothitem(models.Model):
     season = models.CharField(max_length = 100)
     photo = models.ImageField(upload_to = 'clothes/')
     owner = models.ForeignKey(User, on_delete = models.CASCADE)
+    color = models.CharField(max_length = 100)
+    style = models.CharField(max_length = 100)
+    
     def __str__(self):
         return self.name
     

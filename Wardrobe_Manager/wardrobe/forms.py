@@ -5,7 +5,7 @@ from .models import Outfit
 class ClothitemForm(forms.ModelForm):
     class Meta:
         model = Clothitem
-        fields = ["name", "category", "season", "photo"]
+        fields = ["name", "category", "season","color","style","photo"]
         
 class OutfitForm(forms.ModelForm):
     class Meta:
