@@ -6,3 +6,4 @@ class ClothitemForm(forms.ModelForm):
     class Meta:
         model = Clothitem
         fields = ["name", "category", "season", "photo"]
+        

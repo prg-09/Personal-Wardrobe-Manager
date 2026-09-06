@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Clothing</title>
+</head>
+<body>
+
+    <h1>Edit Clothing</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <a href="{% url 'closet' %}">Cancel</a>
+
+</body>
+</html>

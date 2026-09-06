@@ -1,11 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Clothitem
 from .models import Outfit
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from .forms import ClothitemForm
-
 
 def home(request):
     return render(request,'wardrobe/home.html')
@@ -69,3 +68,31 @@ def add_clothing(request):
         form = ClothitemForm()
 
     return render(request, "wardrobe/add_clothing.html", {"form": form})
+
+@login_required
+def edit_clothing(request, id):
+    clothing = get_object_or_404(
+        Clothitem,
+        id=id,
+        owner=request.user
+    )
+
+    if request.method == "POST":
+        form = ClothitemForm(
+            request.POST,
+            request.FILES,
+            instance=clothing
+        )
+
+        if form.is_valid():
+            form.save()
+            return redirect("closet")
+
+    else:
+        form = ClothitemForm(instance=clothing)
+
+    return render(
+        request,
+        "wardrobe/edit_clothing.html",
+        {"form": form}
+    )

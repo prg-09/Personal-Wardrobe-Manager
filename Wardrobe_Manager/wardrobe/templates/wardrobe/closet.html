@@ -13,6 +13,7 @@
     <p>The  clothing items are displayed here</p>
     {% for cloth in clothes %}
         <br>{{cloth.name}}
+        <a href="{% url 'edit_clothing' cloth.id %}">Edit</a>
     {% endfor %}
 </body>
 </html>
