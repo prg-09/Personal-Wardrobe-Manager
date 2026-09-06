@@ -1,22 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>outfitpage</title>
+    <title>My Outfits</title>
 </head>
+
 <body>
-    <h2>Your Outfits</h2>
-    <p>The  outfits are displayed here </p>
 
-   {% for outfit in outfits %}
+    <h2>My Outfits</h2>
 
-    <h3>{{ outfit.name }}</h3>
+    <a href="{% url 'add_outfit' %}">Create Outfit</a>
 
-    {% for cloth in outfit.items.all %}
-        <p>{{ cloth }}</p>
+    {% for outfit in outfits %}
+
+        <h3>{{ outfit.name }}</h3>
+
+        <ul>
+            {% for item in outfit.items.all %}
+                <li>{{ item.name }}</li>
+            {% endfor %}
+        </ul>
+
+    {% empty %}
+
+        <p>You haven't created any outfits yet.</p>
+
     {% endfor %}
 
-{% endfor %}
 </body>
 </html>

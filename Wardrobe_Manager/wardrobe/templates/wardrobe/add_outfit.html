@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Outfit</title>
+</head>
+
+<body>
+
+    <h2>Create Outfit</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Create Outfit</button>
+    </form>
+
+    <a href="{% url 'outfit' %}">Cancel</a>
+
+</body>
+</html>

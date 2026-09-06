@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from .forms import ClothitemForm
-
+from .forms import OutfitForm
 def home(request):
     return render(request,'wardrobe/home.html')
 
@@ -113,4 +113,27 @@ def delete_clothing(request, id):
         request,
         "wardrobe/delete_clothing.html",
         {"clothing": clothing}
+    )
+ 
+@login_required
+def add_outfit(request):
+
+    if request.method == "POST":
+        form = OutfitForm(request.POST, user=request.user)
+
+        if form.is_valid():
+            outfit = form.save(commit=False)
+            outfit.owner = request.user
+            outfit.save()
+            form.save_m2m()
+
+            return redirect("outfit")
+
+    else:
+        form = OutfitForm(user=request.user)
+
+    return render(
+        request,
+        "wardrobe/add_outfit.html",
+        {"form": form}
     )
