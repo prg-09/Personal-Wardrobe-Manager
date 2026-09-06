@@ -18,3 +18,8 @@ class OutfitForm(forms.ModelForm):
         self.fields["items"].queryset = Clothitem.objects.filter(
             owner=user
         )
+        
+class OutfitGeneratorForm(forms.Form):
+    occasion = forms.CharField(max_length=100)
+    season = forms.CharField(max_length=100)
+    style = forms.CharField(max_length=100)

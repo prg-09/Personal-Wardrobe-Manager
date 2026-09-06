@@ -35,6 +35,7 @@ urlpatterns = [
     path("add-outfit/", views.add_outfit, name="add_outfit"),
     path("edit-outfit/<int:id>/", views.edit_outfit, name="edit_outfit"),
     path('delete-outfit/<int:id>/',views.delete_outfit,name= 'delete_outfit'),
+    path('ai-generator/',views.ai_generator, name= 'ai_generator'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

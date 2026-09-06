@@ -4,8 +4,9 @@ from .models import Outfit
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-from .forms import ClothitemForm
-from .forms import OutfitForm
+from .forms import ClothitemForm,OutfitForm, OutfitGeneratorForm
+from .ai import generate_outfit
+
 def home(request):
     return render(request,'wardrobe/home.html')
 
@@ -185,4 +186,48 @@ def delete_outfit(request, id):
         request,
         "wardrobe/delete_outfit.html",
         {"outfit": outfit}
+    )
+    
+@login_required
+def ai_generator(request):
+
+    clothes = Clothitem.objects.filter(
+        owner=request.user
+    )
+
+    if request.method == "POST":
+
+        form = OutfitGeneratorForm(request.POST)
+
+        if form.is_valid():
+
+            occasion = form.cleaned_data["occasion"]
+            season = form.cleaned_data["season"]
+            style = form.cleaned_data["style"]
+
+            recommendation = generate_outfit(
+                clothes,
+                occasion,
+                season,
+                style
+            )
+
+            return render(
+                request,
+                "wardrobe/ai_generator.html",
+                {
+                    "form": form,
+                    "recommendation": recommendation,
+                }
+            )
+
+    else:
+        form = OutfitGeneratorForm()
+
+    return render(
+        request,
+        "wardrobe/ai_generator.html",
+        {
+            "form": form,
+        }
     )

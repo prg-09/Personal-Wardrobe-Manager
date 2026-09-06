@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Outfit Generator</title>
+</head>
+
+<body>
+
+    <h2>AI Outfit Generator</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Generate Outfit</button>
+    </form>
+
+    {% if recommendation %}
+
+    <h3>✨ Your AI Recommendation</h3>
+
+    <p>
+        {{ recommendation|linebreaksbr }}
+    </p>
+
+{% endif %}
+
+    {% if clothes %}
+
+        <h3>Your Wardrobe</h3>
+
+        <ul>
+            {% for cloth in clothes %}
+                <li>
+                    {{ cloth.name }}
+                    - {{ cloth.category }}
+                    - {{ cloth.color }}
+                    - {{ cloth.style }}
+                    - {{ cloth.season }}
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+
+</body>
+</html>
