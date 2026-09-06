@@ -137,3 +137,52 @@ def add_outfit(request):
         "wardrobe/add_outfit.html",
         {"form": form}
     )
+    
+@login_required
+def edit_outfit(request, id):
+    outfit = get_object_or_404(
+        Outfit,
+        id=id,
+        owner=request.user
+    )
+
+    if request.method == "POST":
+        form = OutfitForm(
+            request.POST,
+            instance=outfit,
+            user=request.user
+        )
+
+        if form.is_valid():
+            form.save()
+            return redirect("outfit")
+
+    else:
+        form = OutfitForm(
+            instance=outfit,
+            user=request.user
+        )
+
+    return render(
+        request,
+        "wardrobe/edit_outfit.html",
+        {"form": form}
+    )
+    
+@login_required
+def delete_outfit(request, id):
+    outfit = get_object_or_404(
+        Outfit,
+        id=id,
+        owner=request.user
+    )
+
+    if request.method == "POST":
+        outfit.delete()
+        return redirect("outfit")
+
+    return render(
+        request,
+        "wardrobe/delete_outfit.html",
+        {"outfit": outfit}
+    )

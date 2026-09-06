@@ -33,8 +33,8 @@ urlpatterns = [
     path("edit-clothing/<int:id>/", views.edit_clothing, name="edit_clothing"),
     path('delete-clothing/<int:id>/',views.delete_clothing,name= 'delete_clothing'),
     path("add-outfit/", views.add_outfit, name="add_outfit"),
-    # path("edit-outfit/<int:id>/", views.edit_outfit, name="edit_outfit"),
-    # path('delete-outfit/<int:id>/',views.delete_outfit,name= 'delete_outfit'),
+    path("edit-outfit/<int:id>/", views.edit_outfit, name="edit_outfit"),
+    path('delete-outfit/<int:id>/',views.delete_outfit,name= 'delete_outfit'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

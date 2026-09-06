@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Outfit</title>
+</head>
+
+<body>
+
+    <h2>Delete Outfit</h2>
+
+    <p>
+        Are you sure you want to delete "{{ outfit.name }}"?
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <button type="submit">Yes, Delete</button>
+    </form>
+
+    <a href="{% url 'outfit' %}">Cancel</a>
+
+</body>
+</html>

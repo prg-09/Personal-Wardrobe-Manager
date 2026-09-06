@@ -9,6 +9,7 @@
     <h2>My Outfits</h2>
 
     <a href="{% url 'add_outfit' %}">Create Outfit</a>
+    
 
     {% for outfit in outfits %}
 
@@ -19,6 +20,9 @@
                 <li>{{ item.name }}</li>
             {% endfor %}
         </ul>
+        <a href="{% url 'edit_outfit' outfit.id %}">Edit</a>
+
+        <a href="{% url 'delete_outfit' outfit.id %}">Delete</a>
 
     {% empty %}
 
