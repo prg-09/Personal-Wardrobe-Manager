@@ -1,20 +1,78 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>closetpage</title>
-    <a href="{% url 'add_clothing' %}">
-    Add Clothing
-</a>
+    <title>My Closet | Wardrobe Manager</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h2>Your Closet</h2>
-    <p>The  clothing items are displayed here</p>
-    {% for cloth in clothes %}
-        <br>{{cloth.name}}
-        <a href="{% url 'edit_clothing' cloth.id %}">Edit</a>
-        <a href="{% url 'delete_clothing' cloth.id %}">Delete</a>
-    {% endfor %}
+    <header class="site-header">
+        <a class="brand" href="{% url 'closet' %}">
+            {% if request.user.first_name %}
+                {{ request.user.first_name }}'s Wardrobe
+            {% else %}
+                {{ request.user.username }}'s Wardrobe
+            {% endif %}
+        </a>
+        <nav class="main-nav" aria-label="Primary navigation">
+            <a class="active" href="{% url 'closet' %}">Closet</a>
+            <a href="{% url 'outfit' %}">Outfits</a>
+            <a href="{% url 'ai_generator' %}">Stylist</a>
+            <a href="{% url 'logout' %}">Log out</a>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <section class="intro">
+            <div>
+                <p class="eyebrow">Your personal collection</p>
+                <h1>The closet</h1>
+                <p class="intro-copy">A considered edit of the pieces that make your everyday style distinctly yours.</p>
+            </div>
+            <a class="primary-button" href="{% url 'add_clothing' %}">Add clothing</a>
+        </section>
+
+        <div class="closet-toolbar">
+            <span>All pieces</span>
+            <span>{{ clothes|length }} item{{ clothes|length|pluralize }}</span>
+        </div>
+
+        {% if clothes %}
+            <section class="clothing-grid" aria-label="Clothing items">
+                {% for cloth in clothes %}
+                    <article class="clothing-card">
+                        <div class="photo-frame">
+                            {% if cloth.photo %}
+                                <img src="{{ cloth.photo.url }}" alt="{{ cloth.name }}">
+                            {% else %}
+                                <span class="photo-placeholder">No image yet</span>
+                            {% endif %}
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">{{ cloth.category }}</span>
+                            <h2>{{ cloth.name }}</h2>
+                            <div class="details">
+                                <div class="detail"><span class="detail-label">Color</span><span class="detail-value">{{ cloth.color }}</span></div>
+                                <div class="detail"><span class="detail-label">Season</span><span class="detail-value">{{ cloth.season }}</span></div>
+                                <div class="detail"><span class="detail-label">Style</span><span class="detail-value">{{ cloth.style }}</span></div>
+                            </div>
+                            <div class="card-actions">
+                                <a href="{% url 'edit_clothing' cloth.id %}">Edit</a>
+                                <a href="{% url 'delete_clothing' cloth.id %}">Delete</a>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </section>
+        {% else %}
+            <section class="empty-state">
+                <h2>Your collection starts here.</h2>
+                <p>Add your first favorite piece and begin building a closet that feels entirely your own.</p>
+                <a class="primary-button" href="{% url 'add_clothing' %}">Add your first piece</a>
+            </section>
+        {% endif %}
+    </main>
 </body>
 </html>
