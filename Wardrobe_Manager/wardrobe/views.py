@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from .forms import ClothitemForm,OutfitForm, OutfitGeneratorForm
 from .ai import generate_outfit
+from django.core.cache import cache
 
 def home(request):
     return render(request,'wardrobe/home.html')
@@ -201,6 +202,20 @@ def ai_generator(request):
 
         if form.is_valid():
 
+            cache_key = f"ai_generator_{request.user.id}"
+
+            if cache.get(cache_key):
+                return render(
+                    request,
+                    "wardrobe/ai_generator.html",
+                    {
+                        "form": form,
+                        "error": "Please wait 30 seconds before generating another outfit."
+                    }
+                )
+
+            cache.set(cache_key, True, 30)
+
             occasion = form.cleaned_data["occasion"]
             season = form.cleaned_data["season"]
             style = form.cleaned_data["style"]
@@ -231,3 +246,4 @@ def ai_generator(request):
             "form": form,
         }
     )
+    
