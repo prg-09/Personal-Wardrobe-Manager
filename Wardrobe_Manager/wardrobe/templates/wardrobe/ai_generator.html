@@ -1,68 +1,121 @@
-<form method="POST" id="outfit-form">
-    {% csrf_token %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Outfit Stylist | Wardrobe Manager</title>
+    <link rel="stylesheet" href="{% static 'css/ai_generator.css' %}">
+</head>
+<body class="ai-stylist-page">
+    <main class="ai-stylist-shell">
+        <header class="ai-stylist-hero">
+            <div class="ai-stylist-hero__copy">
+                <p class="ai-stylist-kicker">Your wardrobe, reimagined</p>
+                <h1>AI Outfit Stylist</h1>
+                <p class="ai-stylist-hero__subtitle">Let AI create a look from the pieces already in your wardrobe.</p>
+            </div>
+        </header>
 
-    {{ form.as_p }}
+        <div class="ai-stylist-layout">
+            <section class="ai-preferences-card" aria-labelledby="preferences-title">
+                <div class="ai-section-heading">
+                    <p class="ai-section-heading__eyebrow">01 / Set the mood</p>
+                    <h2 id="preferences-title">Tell your stylist what you need.</h2>
+                    <p>Choose a few details and your wardrobe will do the rest.</p>
+                </div>
 
-    <button
-        type="submit"
-        id="generate-btn"
-        {% if cooldown %}disabled{% endif %}
-    >
-        {% if cooldown %}
-            Please wait... ⏳
-        {% else %}
-            Generate Outfit ✨
-        {% endif %}
-    </button>
+                <form method="POST" id="outfit-form" class="ai-preferences-form">
+                    {% csrf_token %}
 
-    <p id="wait-message">
-        {% if cooldown %}
-            Please wait 30 seconds before generating another outfit.
-        {% endif %}
-    </p>
-</form>
+                    {{ form.as_p }}
 
-{% if error %}
-    <p>{{ error }}</p>
-{% endif %}
+                    <button
+                        class="ai-generate-button"
+                        type="submit"
+                        id="generate-btn"
+                        {% if cooldown %}disabled{% endif %}
+                    >
+                        {% if cooldown %}
+                            Please wait... ⏳
+                        {% else %}
+                            Generate Outfit ✨
+                        {% endif %}
+                    </button>
 
-{% if recommendation %}
+                    <p class="ai-wait-message" id="wait-message">
+                        {% if cooldown %}
+                            Please wait 30 seconds before generating another outfit.
+                        {% endif %}
+                    </p>
+                </form>
 
-    <h2>{{ recommendation.outfit_name }}</h2>
+                {% if error %}
+                    <div class="ai-status ai-status--error" role="alert">
+                        <span class="ai-status__mark">✦</span>
+                        <div>
+                            <strong>Your stylist is taking a moment.</strong>
+                            <p>{{ error }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            </section>
 
-    <p>{{ recommendation.explanation }}</p>
+            <section class="ai-result-area" aria-live="polite">
+                {% if recommendation %}
+                    <article class="ai-recommendation-card">
+                        <div class="ai-recommendation-card__topline">
+                            <p class="ai-section-heading__eyebrow">02 / Your edit</p>
+                            <span class="ai-recommendation-card__badge">AI recommendation</span>
+                        </div>
 
-    <h4>Selected Clothing:</h4>
+                        <h2>{{ recommendation.outfit_name }}</h2>
+                        <p class="ai-recommendation-card__explanation">{{ recommendation.explanation }}</p>
 
-    <ul>
-        {% for item_id in recommendation.item_ids %}
-            <li>Clothing ID: {{ item_id }}</li>
-        {% endfor %}
-    </ul>
+                        <div class="ai-selected-pieces">
+                            <p class="ai-selected-pieces__label">Selected pieces</p>
+                            <ul>
+                                {% for item_id in recommendation.item_ids %}
+                                    <li><span>Wardrobe piece</span><strong>#{{ item_id }}</strong></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
 
-    <form method="POST">
-        {% csrf_token %}
+                        <form class="ai-save-form" method="POST">
+                            {% csrf_token %}
 
-        <input
-            type="hidden"
-            name="outfit_name"
-            value="{{ recommendation.outfit_name }}"
-        >
+                            <input
+                                type="hidden"
+                                name="outfit_name"
+                                value="{{ recommendation.outfit_name }}"
+                            >
 
-        {% for item_id in recommendation.item_ids %}
-            <input
-                type="hidden"
-                name="item_ids"
-                value="{{ item_id }}"
-            >
-        {% endfor %}
+                            {% for item_id in recommendation.item_ids %}
+                                <input
+                                    type="hidden"
+                                    name="item_ids"
+                                    value="{{ item_id }}"
+                                >
+                            {% endfor %}
 
-        <button type="submit" name="save_outfit">
-            Save Outfit
-        </button>
-    </form>
+                            <button class="ai-save-button" type="submit" name="save_outfit">
+                                Save Outfit
+                            </button>
+                        </form>
+                    </article>
+                {% else %}
+                    <div class="ai-empty-state">
+                        <span class="ai-empty-state__mark">✦</span>
+                        <p class="ai-section-heading__eyebrow">03 / The next look</p>
+                        <h2>Your next favorite outfit is waiting.</h2>
+                        <p>Choose your preferences and let your wardrobe stylist create a look for you.</p>
+                    </div>
+                {% endif %}
+            </section>
+        </div>
 
-{% endif %}
+        <a class="ai-back-link" href="{% url 'closet' %}">Back to Closet</a>
+    </main>
 
 {% if cooldown %}
 <script>
@@ -91,3 +144,5 @@
     }, 1000);
 </script>
 {% endif %}
+</body>
+</html>
