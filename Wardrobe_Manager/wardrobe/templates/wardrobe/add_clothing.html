@@ -1,21 +1,34 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Add Clothing</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Your Wardrobe</title>
+    <link rel="stylesheet" href="{% static 'css/add_clothing.css' %}">
 </head>
-<body>
+<body class="add-clothing-page">
+    <main class="add-clothing-shell">
+        <header class="add-clothing-header">
+            <p class="add-clothing-kicker">Your personal collection</p>
+            <h1>Add to Your Wardrobe</h1>
+            <p class="add-clothing-subtitle">Add a new piece to your collection.</p>
+        </header>
 
-<h1>Add Clothing</h1>
+        <section class="add-clothing-card" aria-labelledby="add-clothing-form-title">
+            <h2 id="add-clothing-form-title">Piece details</h2>
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
+            <form class="add-clothing-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
 
-    {{ form.as_p }}
+                {{ form.as_p }}
 
-    <button type="submit">Add Clothing</button>
-</form>
+                <button class="add-clothing-submit" type="submit">Add to Wardrobe</button>
+            </form>
+        </section>
 
-<a href="{% url 'closet' %}">Back to Closet</a>
+        <a class="add-clothing-back-link" href="{% url 'closet' %}">Back to Closet</a>
+    </main>
 
 </body>
 </html>
