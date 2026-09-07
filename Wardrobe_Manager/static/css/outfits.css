@@ -1,0 +1,206 @@
+.outfits-page {
+    --outfit-ivory: #f7f4ef;
+    --outfit-paper: #fffdfa;
+    --outfit-ink: #292725;
+    --outfit-muted: #817a73;
+    --outfit-line: #e6dfd7;
+    --outfit-rose: #8d5e60;
+
+    background: var(--outfit-ivory);
+    color: var(--outfit-ink);
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.outfits-page,
+.outfits-page * {
+    box-sizing: border-box;
+}
+
+.outfits-page a {
+    color: inherit;
+}
+
+.outfits-shell {
+    margin: 0 auto;
+    max-width: 1100px;
+    padding: 72px 5vw 100px;
+}
+
+.outfits-header {
+    align-items: end;
+    border-bottom: 1px solid var(--outfit-line);
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    margin-bottom: 38px;
+    padding-bottom: 26px;
+}
+
+.outfits-kicker {
+    color: var(--outfit-rose);
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+}
+
+.outfits-title {
+    font-family: Georgia, serif;
+    font-size: clamp(2.5rem, 6vw, 4.8rem);
+    font-weight: normal;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin: 0;
+}
+
+.outfits-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.outfits-page .outfits-button {
+    background: var(--outfit-ink);
+    border: 1px solid var(--outfit-ink);
+    border-radius: 999px;
+    color: #fff;
+    display: inline-flex;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    padding: 13px 19px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 180ms ease, transform 180ms ease;
+}
+
+.outfits-page .outfits-button:hover {
+    background: var(--outfit-rose);
+    border-color: var(--outfit-rose);
+    transform: translateY(-2px);
+}
+
+.outfits-page .outfits-button--secondary {
+    background: transparent;
+    color: var(--outfit-ink);
+}
+
+.outfit-collection {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.outfit-card {
+    background: var(--outfit-paper);
+    border: 1px solid var(--outfit-line);
+    border-radius: 10px;
+    padding: 25px;
+    transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.outfit-card:hover {
+    box-shadow: 0 18px 45px rgba(59, 48, 41, 0.08);
+    transform: translateY(-4px);
+}
+
+.outfit-card__number {
+    color: var(--outfit-rose);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+}
+
+.outfit-card__title {
+    font-family: Georgia, serif;
+    font-size: 1.65rem;
+    font-weight: normal;
+    margin: 10px 0 20px;
+}
+
+.outfit-card__items {
+    border-top: 1px solid var(--outfit-line);
+    list-style: none;
+    margin: 0;
+    padding: 14px 0 0;
+}
+
+.outfit-card__item {
+    color: var(--outfit-muted);
+    font-size: 0.88rem;
+    padding: 5px 0;
+}
+
+.outfit-card__item::before {
+    color: var(--outfit-rose);
+    content: "•";
+    margin-right: 8px;
+}
+
+.outfit-card__actions {
+    border-top: 1px solid var(--outfit-line);
+    display: flex;
+    gap: 18px;
+    margin-top: 20px;
+    padding-top: 15px;
+}
+
+.outfit-card__actions a {
+    color: var(--outfit-muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.outfit-card__actions a:hover {
+    color: var(--outfit-rose);
+}
+
+.outfits-empty {
+    background: var(--outfit-paper);
+    border: 1px solid var(--outfit-line);
+    padding: 72px 24px;
+    text-align: center;
+}
+
+.outfits-empty__title {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    font-weight: normal;
+    margin: 0 0 10px;
+}
+
+.outfits-empty__copy {
+    color: var(--outfit-muted);
+    margin: 0 auto 24px;
+    max-width: 360px;
+}
+
+@media (max-width: 800px) {
+    .outfits-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .outfit-collection {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .outfits-shell {
+        padding: 54px 6vw 70px;
+    }
+
+    .outfit-collection {
+        grid-template-columns: 1fr;
+    }
+
+    .outfits-actions,
+    .outfits-button {
+        width: 100%;
+    }
+}

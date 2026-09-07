@@ -1,37 +1,47 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>My Outfits</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/outfits.css' %}">
 </head>
 
-<body>
+<body class="outfits-page">
+    <main class="outfits-shell">
+        <header class="outfits-header">
+            <div>
+                <p class="outfits-kicker">Your saved looks</p>
+                <h1 class="outfits-title">My outfits</h1>
+            </div>
+            <div class="outfits-actions">
+                <a class="outfits-button outfits-button--secondary" href="{% url 'add_outfit' %}">Create outfit</a>
+                <a class="outfits-button" href="{% url 'ai_generator' %}">AI outfit generator</a>
+            </div>
+        </header>
 
-    <h2>My Outfits</h2>
-
-    <a href="{% url 'ai_generator' %}">
-    <button type="button">✨ AI Outfit Generator</button>
-</a>
-    <a href="{% url 'add_outfit' %}">Create Outfit</a>
-    
-
-    {% for outfit in outfits %}
-
-        <h3>{{ outfit.name }}</h3>
-
-        <ul>
-            {% for item in outfit.items.all %}
-                <li>{{ item.name }}</li>
-            {% endfor %}
-        </ul>
-        <a href="{% url 'edit_outfit' outfit.id %}">Edit</a>
-
-        <a href="{% url 'delete_outfit' outfit.id %}">Delete</a>
-
-    {% empty %}
-
-        <p>You haven't created any outfits yet.</p>
-
-    {% endfor %}
+        {% for outfit in outfits %}
+            <article class="outfit-card">
+                <span class="outfit-card__number">Saved look</span>
+                <h2 class="outfit-card__title">{{ outfit.name }}</h2>
+                <ul class="outfit-card__items">
+                    {% for item in outfit.items.all %}
+                        <li class="outfit-card__item">{{ item.name }}</li>
+                    {% endfor %}
+                </ul>
+                <div class="outfit-card__actions">
+                    <a href="{% url 'edit_outfit' outfit.id %}">Edit</a>
+                    <a href="{% url 'delete_outfit' outfit.id %}">Delete</a>
+                </div>
+            </article>
+        {% empty %}
+            <section class="outfits-empty">
+                <h2 class="outfits-empty__title">Your collection is waiting.</h2>
+                <p class="outfits-empty__copy">Create your first saved look or ask the stylist to put one together.</p>
+                <a class="outfits-button" href="{% url 'add_outfit' %}">Create your first outfit</a>
+            </section>
+        {% endfor %}
+    </main>
 
 </body>
 </html>
