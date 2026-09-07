@@ -1,24 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Delete Outfit</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Outfit | Wardrobe Manager</title>
+    <link rel="stylesheet" href="{% static 'css/edit_delete.css' %}">
 </head>
+<body class="edit-delete-page confirmation-page">
+    <main class="edit-delete-shell edit-delete-shell--confirmation">
+        <section class="confirmation-card" aria-labelledby="delete-outfit-title">
+            <p class="edit-delete-kicker">Collection housekeeping</p>
+            <span class="confirmation-mark" aria-hidden="true">×</span>
+            <h1 id="delete-outfit-title">Remove this outfit?</h1>
+            <p class="confirmation-item">{{ outfit.name }}</p>
+            <p class="confirmation-copy">Are you sure you want to remove this saved outfit? This action cannot be undone.</p>
 
-<body>
-
-    <h2>Delete Outfit</h2>
-
-    <p>
-        Are you sure you want to delete "{{ outfit.name }}"?
-    </p>
-
-    <form method="POST">
-        {% csrf_token %}
-
-        <button type="submit">Yes, Delete</button>
-    </form>
-
-    <a href="{% url 'outfit' %}">Cancel</a>
-
+            <form class="confirmation-actions" method="POST">
+                {% csrf_token %}
+                <button class="confirmation-delete" type="submit">Delete Outfit</button>
+                <a class="edit-delete-secondary" href="{% url 'outfit' %}">Cancel</a>
+            </form>
+        </section>
+    </main>
 </body>
 </html>

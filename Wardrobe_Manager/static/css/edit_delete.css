@@ -1,0 +1,534 @@
+:root {
+    --edit-ivory: #f7f4ef;
+    --edit-paper: #fffdfa;
+    --edit-ink: #292725;
+    --edit-muted: #817a73;
+    --edit-line: #e2d9cf;
+    --edit-rose: #8d5e60;
+    --edit-rose-soft: #f2e7e4;
+    --edit-danger: #9a4d4f;
+    --edit-danger-soft: #f5e5e3;
+    --edit-taupe: #d7cbbd;
+    --edit-shadow: 0 20px 50px rgba(59, 48, 41, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body.edit-delete-page {
+    background: var(--edit-ivory);
+    color: var(--edit-ink);
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.edit-delete-shell {
+    margin: 0 auto;
+    max-width: 760px;
+    padding: 76px 28px 90px;
+}
+
+.edit-delete-hero {
+    border-bottom: 1px solid var(--edit-line);
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+}
+
+.edit-delete-kicker,
+.edit-delete-section-label {
+    color: var(--edit-rose);
+    font-size: 0.69rem;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    margin: 0 0 15px;
+    text-transform: uppercase;
+}
+
+.edit-delete-hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: normal;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+    margin: 0;
+}
+
+.edit-delete-hero > p:last-child {
+    color: var(--edit-muted);
+    font-size: 1rem;
+    margin: 18px 0 0;
+}
+
+.edit-delete-card,
+.edit-outfit-name-card,
+.confirmation-card {
+    background: var(--edit-paper);
+    border: 1px solid var(--edit-line);
+    border-radius: 13px;
+    box-shadow: var(--edit-shadow);
+}
+
+.edit-delete-card {
+    padding: 35px clamp(24px, 5vw, 55px) 40px;
+}
+
+.edit-delete-card h2,
+.edit-outfit-name-card h2,
+.edit-outfit-selection h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: normal;
+    line-height: 1.05;
+    margin: 0;
+}
+
+.edit-delete-card h2 {
+    border-bottom: 1px solid var(--edit-line);
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+}
+
+.edit-delete-field {
+    margin-bottom: 20px;
+}
+
+.edit-delete-field label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.11em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.edit-delete-field input,
+.edit-delete-field select,
+.edit-delete-field textarea {
+    background: #fff;
+    border: 1px solid var(--edit-line);
+    border-radius: 7px;
+    color: var(--edit-ink);
+    font: inherit;
+    min-height: 49px;
+    padding: 12px 14px;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+    width: 100%;
+}
+
+.edit-delete-field input[type="file"] {
+    background: var(--edit-rose-soft);
+    cursor: pointer;
+    padding: 10px;
+}
+
+.edit-delete-field input:focus,
+.edit-delete-field select:focus,
+.edit-delete-field textarea:focus {
+    border-color: var(--edit-rose);
+    box-shadow: 0 0 0 3px rgba(141, 94, 96, 0.13);
+    outline: none;
+}
+
+.edit-delete-field .errorlist,
+.edit-delete-form > .errorlist,
+.edit-outfit-form > .errorlist,
+.edit-outfit-selection > .errorlist {
+    background: var(--edit-rose-soft);
+    border-left: 3px solid var(--edit-rose);
+    color: var(--edit-rose);
+    font-size: 0.82rem;
+    list-style: none;
+    margin: 0 0 8px;
+    padding: 9px 12px;
+}
+
+.edit-delete-help {
+    color: var(--edit-muted);
+    display: block;
+    font-size: 0.78rem;
+    margin-top: 7px;
+}
+
+.edit-delete-actions {
+    align-items: center;
+    border-top: 1px solid var(--edit-line);
+    display: flex;
+    gap: 22px;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-top: 23px;
+}
+
+.edit-delete-secondary {
+    color: var(--edit-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.edit-delete-secondary:hover {
+    color: var(--edit-rose);
+}
+
+.edit-delete-submit,
+.confirmation-delete {
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    padding: 15px 24px;
+    text-transform: uppercase;
+    transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.edit-delete-submit {
+    background: var(--edit-ink);
+    border: 1px solid var(--edit-ink);
+    color: #fff;
+}
+
+.edit-delete-submit:hover {
+    background: var(--edit-rose);
+    border-color: var(--edit-rose);
+    transform: translateY(-2px);
+}
+
+.edit-outfit-shell {
+    max-width: 1180px;
+}
+
+.edit-outfit-form {
+    margin: 0;
+}
+
+.edit-outfit-name-card {
+    align-items: end;
+    display: grid;
+    gap: 40px;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
+    margin-bottom: 40px;
+    padding: 31px clamp(24px, 4vw, 45px) 36px;
+}
+
+.edit-outfit-name-card .edit-delete-field {
+    margin: 0;
+}
+
+.edit-outfit-selection {
+    margin-bottom: 35px;
+}
+
+.edit-outfit-selection__header {
+    align-items: end;
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+    margin-bottom: 23px;
+}
+
+.edit-outfit-selection__header > p {
+    color: var(--edit-muted);
+    font-size: 0.84rem;
+    margin: 0;
+}
+
+.edit-clothing-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.edit-clothing-card {
+    background: var(--edit-paper);
+    border: 1px solid var(--edit-line);
+    border-radius: 10px;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.edit-clothing-card:hover {
+    border-color: var(--edit-taupe);
+    box-shadow: var(--edit-shadow);
+    transform: translateY(-3px);
+}
+
+.edit-clothing-card__input {
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.edit-clothing-card__input:focus-visible + .edit-clothing-card__visual {
+    box-shadow: inset 0 0 0 3px rgba(141, 94, 96, 0.45);
+}
+
+.edit-clothing-card__input:checked ~ .edit-clothing-card__visual {
+    box-shadow: inset 0 0 0 3px var(--edit-rose);
+}
+
+.edit-clothing-card__input:checked ~ .edit-clothing-card__content {
+    background: var(--edit-rose-soft);
+}
+
+.edit-clothing-card__input:checked ~ .edit-clothing-card__visual .edit-clothing-card__check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.edit-clothing-card__visual {
+    align-items: center;
+    background: #ede7df;
+    display: flex;
+    height: 220px;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    transition: box-shadow 180ms ease;
+}
+
+.edit-clothing-card__visual img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform 350ms ease;
+    width: 100%;
+}
+
+.edit-clothing-card:hover .edit-clothing-card__visual img {
+    transform: scale(1.04);
+}
+
+.edit-clothing-card__placeholder {
+    color: #a79b8e;
+    font-family: Georgia, serif;
+}
+
+.edit-clothing-card__check {
+    align-items: center;
+    background: var(--edit-rose);
+    border: 3px solid var(--edit-paper);
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    font-size: 0.75rem;
+    height: 29px;
+    justify-content: center;
+    opacity: 0;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    transform: scale(0.7);
+    transition: opacity 180ms ease, transform 180ms ease;
+    width: 29px;
+}
+
+.edit-clothing-card__content {
+    display: block;
+    min-height: 104px;
+    padding: 15px 16px 17px;
+    transition: background 180ms ease;
+}
+
+.edit-clothing-card__content strong,
+.edit-clothing-card__content span,
+.edit-clothing-card__content small {
+    display: block;
+}
+
+.edit-clothing-card__content strong {
+    font-family: Georgia, serif;
+    font-size: 1.18rem;
+    font-weight: normal;
+    margin-bottom: 6px;
+}
+
+.edit-clothing-card__content span,
+.edit-clothing-card__content small {
+    color: var(--edit-muted);
+    font-size: 0.74rem;
+}
+
+.edit-clothing-card__content small {
+    margin-top: 4px;
+}
+
+.edit-empty-state {
+    background: var(--edit-paper);
+    border: 1px solid var(--edit-line);
+    grid-column: 1 / -1;
+    padding: 65px 25px;
+    text-align: center;
+}
+
+.edit-empty-state h3 {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    font-weight: normal;
+    margin: 0 0 10px;
+}
+
+.edit-empty-state p {
+    color: var(--edit-muted);
+    margin: 0 0 23px;
+}
+
+.edit-empty-state a {
+    color: var(--edit-rose);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.edit-empty-state a:hover {
+    color: var(--edit-ink);
+}
+
+.edit-delete-shell--confirmation {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    max-width: 680px;
+}
+
+.confirmation-card {
+    padding: 46px clamp(25px, 6vw, 65px) 50px;
+    text-align: center;
+    width: 100%;
+}
+
+.confirmation-mark {
+    align-items: center;
+    background: var(--edit-danger-soft);
+    border-radius: 50%;
+    color: var(--edit-danger);
+    display: flex;
+    font-family: Georgia, serif;
+    font-size: 1.7rem;
+    height: 52px;
+    justify-content: center;
+    margin: 6px auto 22px;
+    width: 52px;
+}
+
+.confirmation-card h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: normal;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+    margin: 0;
+}
+
+.confirmation-item {
+    color: var(--edit-rose);
+    font-family: Georgia, serif;
+    font-size: 1.35rem;
+    margin: 17px 0 0;
+}
+
+.confirmation-copy {
+    color: var(--edit-muted);
+    margin: 17px auto 0;
+    max-width: 390px;
+}
+
+.confirmation-actions {
+    align-items: center;
+    border-top: 1px solid var(--edit-line);
+    display: flex;
+    gap: 22px;
+    justify-content: center;
+    margin-top: 31px;
+    padding-top: 25px;
+}
+
+.confirmation-delete {
+    background: var(--edit-danger);
+    border: 1px solid var(--edit-danger);
+    color: #fff;
+}
+
+.confirmation-delete:hover {
+    background: #7e3d40;
+    border-color: #7e3d40;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 980px) {
+    .edit-clothing-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .edit-delete-shell {
+        padding: 54px 6vw 70px;
+    }
+
+    .edit-outfit-name-card {
+        gap: 25px;
+        grid-template-columns: 1fr;
+    }
+
+    .edit-outfit-selection__header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .edit-clothing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .edit-clothing-card__visual {
+        height: 190px;
+    }
+}
+
+@media (max-width: 480px) {
+    .edit-delete-shell--confirmation {
+        padding: 24px 15px;
+    }
+
+    .edit-delete-card,
+    .edit-outfit-name-card {
+        padding: 28px 20px 32px;
+    }
+
+    .edit-clothing-grid {
+        gap: 12px;
+    }
+
+    .edit-clothing-card__visual {
+        height: 165px;
+    }
+
+    .edit-clothing-card__content {
+        padding: 12px;
+    }
+
+    .edit-clothing-card__content strong {
+        font-size: 1.05rem;
+    }
+
+    .edit-delete-actions,
+    .confirmation-actions {
+        align-items: stretch;
+        flex-direction: column-reverse;
+    }
+
+    .edit-delete-submit,
+    .confirmation-delete {
+        width: 100%;
+    }
+}

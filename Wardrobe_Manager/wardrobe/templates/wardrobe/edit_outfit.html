@@ -1,22 +1,87 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Edit Outfit</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Outfit | Wardrobe Manager</title>
+    <link rel="stylesheet" href="{% static 'css/edit_delete.css' %}">
 </head>
+<body class="edit-delete-page edit-outfit-page">
+    <main class="edit-delete-shell edit-outfit-shell">
+        <header class="edit-delete-hero">
+            <p class="edit-delete-kicker">Refine the look</p>
+            <h1>Edit Outfit</h1>
+            <p>Refine the pieces that make up this look.</p>
+        </header>
 
-<body>
+        <form class="edit-outfit-form" method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
 
-    <h2>Edit Outfit</h2>
+            <section class="edit-outfit-name-card" aria-labelledby="edit-outfit-name-title">
+                <div>
+                    <p class="edit-delete-section-label">01 / Name your look</p>
+                    <h2 id="edit-outfit-name-title">Give this combination a name.</h2>
+                </div>
+                <div class="edit-delete-field">
+                    {{ form.name.errors }}
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                </div>
+            </section>
 
-    <form method="POST">
-        {% csrf_token %}
+            <section class="edit-outfit-selection" aria-labelledby="edit-outfit-selection-title">
+                <div class="edit-outfit-selection__header">
+                    <div>
+                        <p class="edit-delete-section-label">02 / Select your pieces</p>
+                        <h2 id="edit-outfit-selection-title">Shape the look.</h2>
+                    </div>
+                    <p>Choose as many pieces as you like.</p>
+                </div>
 
-        {{ form.as_p }}
+                {{ form.items.errors }}
+                <div class="edit-clothing-grid">
+                    {% for item in form.items.field.queryset %}
+                        <label class="edit-clothing-card">
+                            <input
+                                class="edit-clothing-card__input"
+                                type="checkbox"
+                                name="items"
+                                value="{{ item.pk }}"
+                                {% if form.items.value %}
+                                    {% if item in form.items.value or item.pk|stringformat:"s" in form.items.value %}checked{% endif %}
+                                {% endif %}
+                            >
+                            <span class="edit-clothing-card__visual">
+                                {% if item.photo %}
+                                    <img src="{{ item.photo.url }}" alt="{{ item.name }}">
+                                {% else %}
+                                    <span class="edit-clothing-card__placeholder">No image</span>
+                                {% endif %}
+                                <span class="edit-clothing-card__check" aria-hidden="true">✓</span>
+                            </span>
+                            <span class="edit-clothing-card__content">
+                                <strong>{{ item.name }}</strong>
+                                <span>{{ item.category }} · {{ item.color }}</span>
+                                <small>{{ item.season }} · {{ item.style }}</small>
+                            </span>
+                        </label>
+                    {% empty %}
+                        <div class="edit-empty-state">
+                            <h3>Your wardrobe is waiting for its first look.</h3>
+                            <p>Add clothing pieces before editing this outfit.</p>
+                            <a href="{% url 'add_clothing' %}">Add clothing</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
 
-        <button type="submit">Save Changes</button>
-    </form>
-
-    <a href="{% url 'outfit' %}">Cancel</a>
-
+            <div class="edit-delete-actions">
+                <a class="edit-delete-secondary" href="{% url 'outfit' %}">Cancel</a>
+                <button class="edit-delete-submit" type="submit">Save Changes</button>
+            </div>
+        </form>
+    </main>
 </body>
 </html>

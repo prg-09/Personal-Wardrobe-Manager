@@ -1,21 +1,41 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Edit Clothing</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Clothing | Wardrobe Manager</title>
+    <link rel="stylesheet" href="{% static 'css/edit_delete.css' %}">
 </head>
-<body>
+<body class="edit-delete-page edit-clothing-page">
+    <main class="edit-delete-shell">
+        <header class="edit-delete-hero">
+            <p class="edit-delete-kicker">Refine your collection</p>
+            <h1>Edit Clothing</h1>
+            <p>Update the details of this piece in your wardrobe.</p>
+        </header>
 
-    <h1>Edit Clothing</h1>
+        <section class="edit-delete-card" aria-labelledby="edit-clothing-title">
+            <h2 id="edit-clothing-title">Piece details</h2>
+            <form class="edit-delete-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+                {% for field in form %}
+                    <div class="edit-delete-field">
+                        {{ field.errors }}
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}<span class="edit-delete-help">{{ field.help_text }}</span>{% endif %}
+                    </div>
+                {% endfor %}
 
-        {{ form.as_p }}
-
-        <button type="submit">Save Changes</button>
-    </form>
-
-    <a href="{% url 'closet' %}">Cancel</a>
-
+                <div class="edit-delete-actions">
+                    <a class="edit-delete-secondary" href="{% url 'closet' %}">Cancel</a>
+                    <button class="edit-delete-submit" type="submit">Save Changes</button>
+                </div>
+            </form>
+        </section>
+    </main>
 </body>
 </html>
