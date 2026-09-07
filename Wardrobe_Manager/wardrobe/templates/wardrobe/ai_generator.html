@@ -28,17 +28,39 @@
 
 {% if recommendation %}
 
-<h2>{{ recommendation.outfit_name }}</h2>
+    <h2>{{ recommendation.outfit_name }}</h2>
 
-<p>{{ recommendation.explanation }}</p>
+    <p>{{ recommendation.explanation }}</p>
 
-<h4>Selected Clothing IDs:</h4>
+    <h4>Selected Clothing:</h4>
 
-<ul>
-    {% for item_id in recommendation.item_ids %}
-        <li>{{ item_id }}</li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for item_id in recommendation.item_ids %}
+            <li>Clothing ID: {{ item_id }}</li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input
+            type="hidden"
+            name="outfit_name"
+            value="{{ recommendation.outfit_name }}"
+        >
+
+        {% for item_id in recommendation.item_ids %}
+            <input
+                type="hidden"
+                name="item_ids"
+                value="{{ item_id }}"
+            >
+        {% endfor %}
+
+        <button type="submit" name="save_outfit">
+            Save Outfit
+        </button>
+    </form>
 
 {% endif %}
 

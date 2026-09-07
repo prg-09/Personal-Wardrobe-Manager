@@ -190,6 +190,7 @@ def delete_outfit(request, id):
     )
     
 @login_required
+@login_required
 def ai_generator(request):
 
     clothes = Clothitem.objects.filter(owner=request.user)
@@ -198,11 +199,31 @@ def ai_generator(request):
 
     if request.method == "POST":
 
+        # SAVE OUTFIT
+        if "save_outfit" in request.POST:
+
+            outfit_name = request.POST.get("outfit_name")
+            item_ids = request.POST.getlist("item_ids")
+
+            outfit = Outfit.objects.create(
+                name=outfit_name,
+                owner=request.user
+            )
+
+            items = Clothitem.objects.filter(
+                id__in=item_ids,
+                owner=request.user
+            )
+
+            outfit.items.set(items)
+
+            return redirect("outfit")
+
+        # GENERATE OUTFIT
         form = OutfitGeneratorForm(request.POST)
 
         if form.is_valid():
 
-            # Check 30-second cooldown
             if cache.get(cache_key):
 
                 return render(
@@ -215,14 +236,12 @@ def ai_generator(request):
                     }
                 )
 
-            # Start 30-second cooldown
             cache.set(cache_key, True, 30)
 
             occasion = form.cleaned_data["occasion"]
             season = form.cleaned_data["season"]
             style = form.cleaned_data["style"]
 
-            # Generate outfit using Gemini
             recommendation = generate_outfit(
                 clothes,
                 occasion,
