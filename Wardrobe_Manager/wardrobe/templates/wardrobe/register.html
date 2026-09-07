@@ -1,10 +1,39 @@
-<h1>Create an Account</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Wardrobe | Wardrobe Manager</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body class="auth-page auth-page--register">
+    <main class="auth-shell">
+        <section class="auth-card" aria-labelledby="register-title">
+            <div class="auth-card__intro">
+                <p class="auth-kicker">A considered beginning</p>
+                <h1 id="register-title">Create Your Wardrobe</h1>
+                <p class="auth-subtitle">Start building your personal digital wardrobe.</p>
+            </div>
 
-<form method="POST">
-    {% csrf_token %}
+            <form class="auth-form" method="POST">
+                {% csrf_token %}
 
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
+                <div class="auth-field">
+                    <label for="register-username">Username</label>
+                    <input id="register-username" type="text" name="username" placeholder="Username">
+                </div>
 
-    <button type="submit">Register</button>
-</form>
+                <div class="auth-field">
+                    <label for="register-password">Password</label>
+                    <input id="register-password" type="password" name="password" placeholder="Password">
+                </div>
+
+                <button class="auth-submit" type="submit">Register</button>
+            </form>
+
+            <p class="auth-switch">Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
+        </section>
+    </main>
+</body>
+</html>
