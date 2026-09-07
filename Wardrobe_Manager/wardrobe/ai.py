@@ -1,4 +1,5 @@
 import os
+import json
 from dotenv import load_dotenv
 from google import genai
 
@@ -29,18 +30,27 @@ def generate_outfit(clothes, occasion, season, style):
     {wardrobe}
 
     The user wants an outfit for:
+
     Occasion: {occasion}
     Season: {season}
     Style: {style}
 
-    Create one outfit using ONLY the clothing items listed above.
+    Create ONE outfit using ONLY the clothing items listed above.
 
-    Give:
-    1. Outfit name
-    2. IDs of the items you selected
-    3. A short explanation of why the items work together.
+    Return ONLY valid JSON.
+    Do not include markdown, explanations outside the JSON, or code fences.
 
-    Do not invent clothing items that are not in the wardrobe.
+    The JSON must have exactly this structure:
+
+    {{
+        "outfit_name": "Name of the outfit",
+        "item_ids": [1, 2],
+        "explanation": "Short explanation of why these items work together."
+    }}
+
+    Important:
+    - item_ids must contain ONLY IDs from the wardrobe above.
+    - Do not invent clothing items or IDs.
     """
 
     interaction = client.interactions.create(
@@ -48,4 +58,8 @@ def generate_outfit(clothes, occasion, season, style):
         input=prompt
     )
 
-    return interaction.output_text
+    output = interaction.output_text.strip()
+
+    recommendation = json.loads(output)
+
+    return recommendation

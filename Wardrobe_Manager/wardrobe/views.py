@@ -202,6 +202,7 @@ def ai_generator(request):
 
         if form.is_valid():
 
+            # Check 30-second cooldown
             if cache.get(cache_key):
 
                 return render(
@@ -214,13 +215,14 @@ def ai_generator(request):
                     }
                 )
 
-            # Start 30 second cooldown
+            # Start 30-second cooldown
             cache.set(cache_key, True, 30)
 
             occasion = form.cleaned_data["occasion"]
             season = form.cleaned_data["season"]
             style = form.cleaned_data["style"]
 
+            # Generate outfit using Gemini
             recommendation = generate_outfit(
                 clothes,
                 occasion,

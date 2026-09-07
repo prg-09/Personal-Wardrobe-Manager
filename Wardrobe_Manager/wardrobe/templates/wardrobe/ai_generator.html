@@ -27,13 +27,19 @@
 {% endif %}
 
 {% if recommendation %}
-    <hr>
 
-    <h2>Your AI Recommendation</h2>
+<h2>{{ recommendation.outfit_name }}</h2>
 
-    <p>
-        {{ recommendation|linebreaksbr }}
-    </p>
+<p>{{ recommendation.explanation }}</p>
+
+<h4>Selected Clothing IDs:</h4>
+
+<ul>
+    {% for item_id in recommendation.item_ids %}
+        <li>{{ item_id }}</li>
+    {% endfor %}
+</ul>
+
 {% endif %}
 
 {% if cooldown %}
