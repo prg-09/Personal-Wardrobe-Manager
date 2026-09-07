@@ -1,22 +1,87 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Add Outfit</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Outfit | Wardrobe Manager</title>
+    <link rel="stylesheet" href="{% static 'css/create_outfit.css' %}">
 </head>
+<body class="create-outfit-page">
+    <main class="create-outfit-shell">
+        <header class="create-outfit-hero">
+            <p class="create-outfit-kicker">The styling studio</p>
+            <h1>Create an Outfit</h1>
+            <p>Mix and match pieces from your wardrobe to create a look that's uniquely yours.</p>
+        </header>
 
-<body>
+        <form class="create-outfit-form" method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
 
-    <h2>Create Outfit</h2>
+            <section class="outfit-name-card" aria-labelledby="outfit-name-title">
+                <div>
+                    <p class="create-outfit-section-label">01 / Name your look</p>
+                    <h2 id="outfit-name-title">Give this combination a name.</h2>
+                </div>
+                <div class="outfit-name-field">
+                    {{ form.name.errors }}
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                </div>
+            </section>
 
-    <form method="POST">
-        {% csrf_token %}
+            <section class="wardrobe-selection" aria-labelledby="wardrobe-selection-title">
+                <div class="wardrobe-selection__header">
+                    <div>
+                        <p class="create-outfit-section-label">02 / Select your pieces</p>
+                        <h2 id="wardrobe-selection-title">Build the look.</h2>
+                    </div>
+                    <p class="wardrobe-selection__hint">Choose as many pieces as you like.</p>
+                </div>
 
-        {{ form.as_p }}
+                {{ form.items.errors }}
+                <div class="clothing-selection-grid">
+                    {% for item in form.items.field.queryset %}
+                        <label class="clothing-selection-card">
+                            <input
+                                class="clothing-selection-card__input"
+                                type="checkbox"
+                                name="items"
+                                value="{{ item.pk }}"
+                                {% if form.items.value %}
+                                    {% if item.pk|stringformat:"s" in form.items.value %}checked{% endif %}
+                                {% endif %}
+                            >
+                            <span class="clothing-selection-card__visual">
+                                {% if item.photo %}
+                                    <img src="{{ item.photo.url }}" alt="{{ item.name }}">
+                                {% else %}
+                                    <span class="clothing-selection-card__placeholder">No image</span>
+                                {% endif %}
+                                <span class="clothing-selection-card__check" aria-hidden="true">✓</span>
+                            </span>
+                            <span class="clothing-selection-card__content">
+                                <strong>{{ item.name }}</strong>
+                                <span>{{ item.category }} · {{ item.color }}</span>
+                                <small>{{ item.season }} · {{ item.style }}</small>
+                            </span>
+                        </label>
+                    {% empty %}
+                        <div class="empty-wardrobe-state">
+                            <h3>Your wardrobe is waiting for its first look.</h3>
+                            <p>Add some clothing pieces before creating an outfit.</p>
+                            <a href="{% url 'add_clothing' %}">Add clothing</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
 
-        <button type="submit">Create Outfit</button>
-    </form>
-
-    <a href="{% url 'outfit' %}">Cancel</a>
+            <div class="create-outfit-actions">
+                <a class="create-outfit-cancel" href="{% url 'outfit' %}">Cancel</a>
+                <button class="create-outfit-submit" type="submit">Save Outfit</button>
+            </div>
+        </form>
 
 </body>
 </html>
