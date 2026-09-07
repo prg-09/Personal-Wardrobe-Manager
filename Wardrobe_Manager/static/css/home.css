@@ -28,7 +28,8 @@ body.home-page {
     text-decoration: none;
 }
 
-.home-header {
+.home-header,
+.app-header {
     align-items: center;
     border-bottom: 1px solid var(--home-line);
     display: flex;
@@ -39,14 +40,16 @@ body.home-page {
     padding: 25px 5vw;
 }
 
-.home-brand {
+.home-brand,
+.app-brand {
     font-family: Georgia, serif;
     font-size: 1.1rem;
     letter-spacing: 0.04em;
     white-space: nowrap;
 }
 
-.home-nav {
+.home-nav,
+.app-nav {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
@@ -54,7 +57,8 @@ body.home-page {
     justify-content: flex-end;
 }
 
-.home-nav a {
+.home-nav a,
+.app-nav a {
     color: var(--home-muted);
     font-size: 0.69rem;
     letter-spacing: 0.11em;
@@ -63,7 +67,9 @@ body.home-page {
 }
 
 .home-nav a:hover,
-.home-nav .home-nav__active {
+.home-nav .home-nav__active,
+.app-nav a:hover,
+.app-nav .active {
     color: var(--home-ink);
 }
 
@@ -281,13 +287,15 @@ body.home-page {
 }
 
 @media (max-width: 900px) {
-    .home-header {
+    .home-header,
+    .app-header {
         align-items: flex-start;
         flex-direction: column;
         padding: 22px 6vw;
     }
 
-    .home-nav {
+    .home-nav,
+    .app-nav {
         justify-content: flex-start;
     }
 

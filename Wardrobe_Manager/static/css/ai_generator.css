@@ -23,6 +23,47 @@ body.ai-stylist-page {
     min-height: 100vh;
 }
 
+.app-header {
+    align-items: center;
+    border-bottom: 1px solid var(--ai-line);
+    display: flex;
+    gap: 28px;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 22px 5vw;
+}
+
+.app-brand {
+    color: var(--ai-ink);
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.app-nav {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px 18px;
+    justify-content: flex-end;
+}
+
+.app-nav a {
+    color: var(--ai-muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.app-nav a:hover,
+.app-nav .active {
+    color: var(--ai-ink);
+}
+
 .ai-stylist-shell {
     margin: 0 auto;
     max-width: 1240px;
@@ -389,6 +430,17 @@ body.ai-stylist-page {
 }
 
 @media (max-width: 850px) {
+    .app-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 6vw;
+    }
+
+    .app-nav {
+        justify-content: flex-start;
+    }
+
     .ai-stylist-hero {
         align-items: flex-start;
     }

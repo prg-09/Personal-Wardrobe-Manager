@@ -8,10 +8,19 @@
     <link rel="stylesheet" href="{% static 'css/edit_delete.css' %}">
 </head>
 <body class="edit-delete-page edit-outfit-page">
-    <main class="edit-delete-shell edit-outfit-shell">
-        <nav class="page-navigation" aria-label="Page navigation">
+    <header class="app-header">
+        <a class="app-brand" href="{% url 'home' %}">Wardrobe / Studio</a>
+        <nav class="app-nav" aria-label="Primary navigation">
             <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'closet' %}">Closet</a>
+            <a class="active" href="{% url 'outfit' %}">Outfits</a>
+            <a href="{% url 'add_clothing' %}">Add Clothing</a>
+            <a href="{% url 'add_outfit' %}">Create Outfit</a>
+            <a href="{% url 'ai_generator' %}">AI Stylist</a>
+            <a href="{% url 'logout' %}">Log out</a>
         </nav>
+    </header>
+    <main class="edit-delete-shell edit-outfit-shell">
         <header class="edit-delete-hero">
             <p class="edit-delete-kicker">Refine the look</p>
             <h1>Edit Outfit</h1>

@@ -23,6 +23,47 @@ body.create-outfit-page {
     min-height: 100vh;
 }
 
+.app-header {
+    align-items: center;
+    border-bottom: 1px solid var(--create-line);
+    display: flex;
+    gap: 28px;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 22px 5vw;
+}
+
+.app-brand {
+    color: var(--create-ink);
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.app-nav {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px 18px;
+    justify-content: flex-end;
+}
+
+.app-nav a {
+    color: var(--create-muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.app-nav a:hover,
+.app-nav .active {
+    color: var(--create-ink);
+}
+
 .create-outfit-shell {
     margin: 0 auto;
     max-width: 1180px;
@@ -358,6 +399,17 @@ body.create-outfit-page {
 }
 
 @media (max-width: 700px) {
+    .app-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 6vw;
+    }
+
+    .app-nav {
+        justify-content: flex-start;
+    }
+
     .create-outfit-shell {
         padding: 54px 6vw 70px;
     }

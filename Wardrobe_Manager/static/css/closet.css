@@ -59,6 +59,44 @@ a {
     color: var(--ink);
 }
 
+.app-header {
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    gap: 28px;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 22px 5vw;
+}
+
+.app-brand {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.app-nav {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px 18px;
+    justify-content: flex-end;
+}
+
+.app-nav a {
+    color: var(--muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.app-nav a:hover,
+.app-nav .active {
+    color: var(--ink);
+}
+
 .page-shell {
     margin: 0 auto;
     max-width: 1440px;
@@ -260,6 +298,17 @@ h2 {
 }
 
 @media (max-width: 760px) {
+    .app-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 6vw;
+    }
+
+    .app-nav {
+        justify-content: flex-start;
+    }
+
     .site-header {
         align-items: flex-start;
         flex-direction: column;

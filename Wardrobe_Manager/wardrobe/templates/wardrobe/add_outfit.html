@@ -8,10 +8,19 @@
     <link rel="stylesheet" href="{% static 'css/create_outfit.css' %}">
 </head>
 <body class="create-outfit-page">
-    <main class="create-outfit-shell">
-        <nav class="page-navigation" aria-label="Page navigation">
+    <header class="app-header">
+        <a class="app-brand" href="{% url 'home' %}">Wardrobe / Studio</a>
+        <nav class="app-nav" aria-label="Primary navigation">
             <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'closet' %}">Closet</a>
+            <a href="{% url 'outfit' %}">Outfits</a>
+            <a href="{% url 'add_clothing' %}">Add Clothing</a>
+            <a class="active" href="{% url 'add_outfit' %}">Create Outfit</a>
+            <a href="{% url 'ai_generator' %}">AI Stylist</a>
+            <a href="{% url 'logout' %}">Log out</a>
         </nav>
+    </header>
+    <main class="create-outfit-shell">
         <header class="create-outfit-hero">
             <p class="create-outfit-kicker">The styling studio</p>
             <h1>Create an Outfit</h1>
@@ -85,6 +94,7 @@
                 <button class="create-outfit-submit" type="submit">Save Outfit</button>
             </div>
         </form>
+    </main>
 
 </body>
 </html>

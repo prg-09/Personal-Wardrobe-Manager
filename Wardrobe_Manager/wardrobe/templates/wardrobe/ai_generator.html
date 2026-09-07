@@ -8,10 +8,19 @@
     <link rel="stylesheet" href="{% static 'css/ai_generator.css' %}">
 </head>
 <body class="ai-stylist-page">
-    <main class="ai-stylist-shell">
-        <nav class="page-navigation" aria-label="Page navigation">
+    <header class="app-header">
+        <a class="app-brand" href="{% url 'home' %}">Wardrobe / Studio</a>
+        <nav class="app-nav" aria-label="Primary navigation">
             <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'closet' %}">Closet</a>
+            <a href="{% url 'outfit' %}">Outfits</a>
+            <a href="{% url 'add_clothing' %}">Add Clothing</a>
+            <a href="{% url 'add_outfit' %}">Create Outfit</a>
+            <a class="active" href="{% url 'ai_generator' %}">AI Stylist</a>
+            <a href="{% url 'logout' %}">Log out</a>
         </nav>
+    </header>
+    <main class="ai-stylist-shell">
         <header class="ai-stylist-hero">
             <div class="ai-stylist-hero__copy">
                 <p class="ai-stylist-kicker">Your wardrobe, reimagined</p>

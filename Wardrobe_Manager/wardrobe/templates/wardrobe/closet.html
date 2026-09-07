@@ -8,18 +8,20 @@
     <link rel="stylesheet" href="{% static 'css/closet.css' %}">
 </head>
 <body>
-    <header class="site-header">
-        <a class="brand" href="{% url 'closet' %}">
+    <header class="app-header">
+        <a class="app-brand" href="{% url 'home' %}">
             {% if request.user.first_name %}
                 {{ request.user.first_name }}'s Wardrobe
             {% else %}
                 {{ request.user.username }}'s Wardrobe
             {% endif %}
         </a>
-        <nav class="main-nav" aria-label="Primary navigation">
+        <nav class="app-nav" aria-label="Primary navigation">
             <a href="{% url 'home' %}">Home</a>
             <a class="active" href="{% url 'closet' %}">Closet</a>
             <a href="{% url 'outfit' %}">Outfits</a>
+            <a href="{% url 'add_clothing' %}">Add Clothing</a>
+            <a href="{% url 'add_outfit' %}">Create Outfit</a>
             <a href="{% url 'ai_generator' %}">Stylist</a>
             <a href="{% url 'logout' %}">Log out</a>
         </nav>
