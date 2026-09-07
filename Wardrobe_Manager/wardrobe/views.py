@@ -192,9 +192,9 @@ def delete_outfit(request, id):
 @login_required
 def ai_generator(request):
 
-    clothes = Clothitem.objects.filter(
-        owner=request.user
-    )
+    clothes = Clothitem.objects.filter(owner=request.user)
+
+    cache_key = f"ai_generator_{request.user.id}"
 
     if request.method == "POST":
 
@@ -202,18 +202,19 @@ def ai_generator(request):
 
         if form.is_valid():
 
-            cache_key = f"ai_generator_{request.user.id}"
-
             if cache.get(cache_key):
+
                 return render(
                     request,
                     "wardrobe/ai_generator.html",
                     {
                         "form": form,
-                        "error": "Please wait 30 seconds before generating another outfit."
+                        "error": "Please wait 30 seconds before generating another outfit.",
+                        "cooldown": True,
                     }
                 )
 
+            # Start 30 second cooldown
             cache.set(cache_key, True, 30)
 
             occasion = form.cleaned_data["occasion"]
@@ -233,6 +234,7 @@ def ai_generator(request):
                 {
                     "form": form,
                     "recommendation": recommendation,
+                    "cooldown": True,
                 }
             )
 
@@ -246,4 +248,3 @@ def ai_generator(request):
             "form": form,
         }
     )
-    

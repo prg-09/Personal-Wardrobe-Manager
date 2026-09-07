@@ -1,48 +1,65 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>AI Outfit Generator</title>
-</head>
+<form method="POST" id="outfit-form">
+    {% csrf_token %}
 
-<body>
+    {{ form.as_p }}
 
-    <h2>AI Outfit Generator</h2>
+    <button
+        type="submit"
+        id="generate-btn"
+        {% if cooldown %}disabled{% endif %}
+    >
+        {% if cooldown %}
+            Please wait... ⏳
+        {% else %}
+            Generate Outfit ✨
+        {% endif %}
+    </button>
 
-    <form method="POST">
-        {% csrf_token %}
+    <p id="wait-message">
+        {% if cooldown %}
+            Please wait 30 seconds before generating another outfit.
+        {% endif %}
+    </p>
+</form>
 
-        {{ form.as_p }}
+{% if error %}
+    <p>{{ error }}</p>
+{% endif %}
 
-        <button type="submit">Generate Outfit</button>
-    </form>
+{% if recommendation %}
+    <hr>
 
-    {% if recommendation %}
-
-    <h3>✨ Your AI Recommendation</h3>
+    <h2>Your AI Recommendation</h2>
 
     <p>
         {{ recommendation|linebreaksbr }}
     </p>
-
 {% endif %}
 
-    {% if clothes %}
+{% if cooldown %}
+<script>
+    let seconds = 30;
 
-        <h3>Your Wardrobe</h3>
+    const button = document.getElementById("generate-btn");
+    const message = document.getElementById("wait-message");
 
-        <ul>
-            {% for cloth in clothes %}
-                <li>
-                    {{ cloth.name }}
-                    - {{ cloth.category }}
-                    - {{ cloth.color }}
-                    - {{ cloth.style }}
-                    - {{ cloth.season }}
-                </li>
-            {% endfor %}
-        </ul>
+    const countdown = setInterval(function () {
 
-    {% endif %}
+        seconds--;
 
-</body>
-</html>
+        if (seconds > 0) {
+            button.textContent = `Please wait ${seconds}s... ⏳`;
+            message.textContent =
+                `You can generate another outfit in ${seconds} seconds.`;
+        } else {
+
+            clearInterval(countdown);
+
+            button.disabled = false;
+            button.textContent = "Generate Outfit ✨";
+            message.textContent = "";
+        }
+
+    }, 1000);
+</script>
+{% endif %}
