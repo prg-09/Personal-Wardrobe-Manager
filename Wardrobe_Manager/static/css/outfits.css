@@ -64,6 +64,10 @@
     gap: 12px;
 }
 
+.outfits-page .outfits-actions .outfits-button {
+    margin: 0;
+}
+
 .outfits-page .outfits-button {
     background: var(--outfit-ink);
     border: 1px solid var(--outfit-ink);

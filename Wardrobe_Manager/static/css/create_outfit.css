@@ -29,6 +29,23 @@ body.create-outfit-page {
     padding: 76px 5vw 90px;
 }
 
+.page-navigation {
+    margin-bottom: 34px;
+    text-align: right;
+}
+
+.page-navigation a {
+    color: var(--create-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.page-navigation a:hover {
+    color: var(--create-rose);
+}
+
 .create-outfit-hero {
     border-bottom: 1px solid var(--create-line);
     margin-bottom: 42px;

@@ -28,6 +28,23 @@ body.add-clothing-page {
     padding: 76px 28px 90px;
 }
 
+.page-navigation {
+    margin-bottom: 34px;
+    text-align: right;
+}
+
+.page-navigation a {
+    color: var(--add-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.page-navigation a:hover {
+    color: var(--add-rose);
+}
+
 .add-clothing-header {
     margin: 0 auto 34px;
     max-width: 590px;

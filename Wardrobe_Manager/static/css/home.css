@@ -1,0 +1,337 @@
+:root {
+    --home-ivory: #f7f4ef;
+    --home-paper: #fffdfa;
+    --home-ink: #292725;
+    --home-muted: #817a73;
+    --home-line: #e2d9cf;
+    --home-rose: #8d5e60;
+    --home-rose-soft: #f2e7e4;
+    --home-taupe: #d7cbbd;
+    --home-shadow: 0 18px 45px rgba(59, 48, 41, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body.home-page {
+    background: var(--home-ivory);
+    color: var(--home-ink);
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.home-page a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.home-header {
+    align-items: center;
+    border-bottom: 1px solid var(--home-line);
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 25px 5vw;
+}
+
+.home-brand {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.home-nav {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    justify-content: flex-end;
+}
+
+.home-nav a {
+    color: var(--home-muted);
+    font-size: 0.69rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    transition: color 180ms ease;
+}
+
+.home-nav a:hover,
+.home-nav .home-nav__active {
+    color: var(--home-ink);
+}
+
+.home-shell {
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 0 5vw 100px;
+}
+
+.home-hero {
+    align-items: flex-end;
+    border-bottom: 1px solid var(--home-line);
+    display: flex;
+    gap: 45px;
+    justify-content: space-between;
+    min-height: 490px;
+    padding: 92px 0 85px;
+}
+
+.home-hero__copy {
+    max-width: 780px;
+}
+
+.home-kicker {
+    color: var(--home-rose);
+    font-size: 0.69rem;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    margin: 0 0 17px;
+    text-transform: uppercase;
+}
+
+.home-hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(3.4rem, 8vw, 7.8rem);
+    font-weight: normal;
+    letter-spacing: -0.06em;
+    line-height: 0.87;
+    margin: 0;
+    max-width: 850px;
+}
+
+.home-hero__subtitle {
+    color: var(--home-muted);
+    font-size: 1.08rem;
+    margin: 27px 0 0;
+}
+
+.home-hero__actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 33px;
+}
+
+.home-button {
+    border: 1px solid transparent;
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: 0.71rem;
+    justify-content: center;
+    letter-spacing: 0.1em;
+    padding: 15px 22px;
+    text-transform: uppercase;
+    transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.home-button:hover {
+    transform: translateY(-2px);
+}
+
+.home-button--primary {
+    background: var(--home-ink);
+    color: #fff !important;
+}
+
+.home-page a.home-button--primary {
+    color: #fff;
+}
+
+.home-button--primary:hover {
+    background: var(--home-rose);
+}
+
+.home-button--secondary {
+    border-color: var(--home-line);
+    color: var(--home-ink);
+}
+
+.home-button--secondary:hover {
+    border-color: var(--home-rose);
+    color: var(--home-rose);
+}
+
+.home-section {
+    padding: 82px 0 75px;
+}
+
+.home-section__heading {
+    align-items: end;
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+    margin-bottom: 27px;
+}
+
+.home-section__heading .home-kicker {
+    margin: 0;
+}
+
+.home-section h2,
+.home-feature h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.9rem, 4vw, 3.1rem);
+    font-weight: normal;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    margin: 0;
+}
+
+.home-action-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.home-action-card {
+    background: var(--home-paper);
+    border: 1px solid var(--home-line);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    min-height: 235px;
+    padding: 22px;
+    transition: box-shadow 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+
+.home-action-card:hover {
+    border-color: var(--home-taupe);
+    box-shadow: var(--home-shadow);
+    transform: translateY(-4px);
+}
+
+.home-action-card__number {
+    color: var(--home-muted);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+}
+
+.home-action-card__icon {
+    color: var(--home-rose);
+    font-family: Georgia, serif;
+    font-size: 2.2rem;
+    line-height: 1;
+    margin: 28px 0 auto;
+}
+
+.home-action-card strong {
+    font-family: Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+
+.home-action-card > span:last-child {
+    color: var(--home-muted);
+    font-size: 0.78rem;
+    margin-top: 8px;
+}
+
+.home-feature {
+    align-items: center;
+    background: var(--home-ink);
+    border-radius: 12px;
+    color: #fff;
+    display: flex;
+    gap: 35px;
+    justify-content: space-between;
+    padding: 52px clamp(25px, 6vw, 70px);
+}
+
+.home-feature .home-kicker {
+    color: #d9aaa9;
+}
+
+.home-feature h2 {
+    max-width: 520px;
+}
+
+.home-feature__copy > p:last-child {
+    color: #c4bdb6;
+    margin: 17px 0 0;
+    max-width: 470px;
+}
+
+.home-button--light {
+    background: #fff;
+    color: var(--home-ink) !important;
+    flex-shrink: 0;
+}
+
+.home-page a.home-button--light {
+    color: var(--home-ink);
+}
+
+.home-button--light:hover {
+    background: var(--home-rose-soft);
+    color: var(--home-rose);
+}
+
+@media (max-width: 1020px) {
+    .home-action-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .home-header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 22px 6vw;
+    }
+
+    .home-nav {
+        justify-content: flex-start;
+    }
+
+    .home-shell {
+        padding: 0 6vw 70px;
+    }
+
+    .home-hero {
+        align-items: flex-start;
+        flex-direction: column;
+        min-height: 0;
+        padding: 64px 0 60px;
+    }
+
+    .home-section {
+        padding: 60px 0;
+    }
+
+    .home-section__heading,
+    .home-feature {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .home-feature {
+        gap: 28px;
+    }
+
+    .home-button--light {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-action-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-hero__actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .home-button {
+        width: 100%;
+    }
+}

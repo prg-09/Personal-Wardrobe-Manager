@@ -1,18 +1,87 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Personal Wardrobe Manager</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
-<body>
-    <h2>Welcome to Your Personal Wardrobe Manager</h2>
-    <a href="/">Home</a>
-    <br><a href="/closet/">Closet</a>
-    <br><a href="/outfit/">Outfit</a>
-    <br><a href="/register/">Register</a>
-    <br><a href="/login/">Login</a>
-    <br><a href="/logout/">Logout</a>
-    <p>This is your homepage</p>
+<body class="home-page">
+    <header class="home-header">
+        <a class="home-brand" href="{% url 'home' %}">Wardrobe / Studio</a>
+        <nav class="home-nav" aria-label="Primary navigation">
+            <a class="home-nav__active" href="{% url 'home' %}">Home</a>
+            <a href="{% url 'closet' %}">Closet</a>
+            <a href="{% url 'outfit' %}">Outfits</a>
+            <a href="{% url 'add_clothing' %}">Add Clothing</a>
+            <a href="{% url 'ai_generator' %}">AI Stylist</a>
+            <a href="{% url 'logout' %}">Log out</a>
+        </nav>
+    </header>
+
+    <main class="home-shell">
+        <section class="home-hero">
+            <div class="home-hero__copy">
+                <p class="home-kicker">Your personal style space</p>
+                {% if request.user.is_authenticated %}
+                    {% if request.user.first_name %}
+                        <h1>Welcome back, {{ request.user.first_name }}.</h1>
+                    {% else %}
+                        <h1>Welcome back, {{ request.user.username }}.</h1>
+                    {% endif %}
+                {% else %}
+                    <h1>Welcome to your wardrobe.</h1>
+                {% endif %}
+                <p class="home-hero__subtitle">Your wardrobe, your style, your possibilities.</p>
+                <div class="home-hero__actions">
+                    <a class="home-button home-button--primary" href="{% url 'closet' %}">Explore My Wardrobe</a>
+                    <a class="home-button home-button--secondary" href="{% url 'add_outfit' %}">Create an Outfit</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-section" aria-labelledby="quick-actions-title">
+            <div class="home-section__heading">
+                <p class="home-kicker">Make a move</p>
+                <h2 id="quick-actions-title">Your wardrobe, within reach.</h2>
+            </div>
+            <div class="home-action-grid">
+                <a class="home-action-card" href="{% url 'closet' %}">
+                    <span class="home-action-card__number">01</span>
+                    <span class="home-action-card__icon">▥</span>
+                    <strong>My Wardrobe</strong>
+                    <span>Browse the pieces you already love.</span>
+                </a>
+                <a class="home-action-card" href="{% url 'add_clothing' %}">
+                    <span class="home-action-card__number">02</span>
+                    <span class="home-action-card__icon">＋</span>
+                    <strong>Add Clothing</strong>
+                    <span>Bring a new favorite into the collection.</span>
+                </a>
+                <a class="home-action-card" href="{% url 'outfit' %}">
+                    <span class="home-action-card__number">03</span>
+                    <span class="home-action-card__icon">◈</span>
+                    <strong>Saved Outfits</strong>
+                    <span>Return to looks you've put together.</span>
+                </a>
+                <a class="home-action-card" href="{% url 'ai_generator' %}">
+                    <span class="home-action-card__number">04</span>
+                    <span class="home-action-card__icon">✧</span>
+                    <strong>AI Stylist</strong>
+                    <span>Find a fresh combination from your wardrobe.</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="home-feature" aria-labelledby="stylist-feature-title">
+            <div class="home-feature__copy">
+                <p class="home-kicker">A little inspiration</p>
+                <h2 id="stylist-feature-title">Need outfit inspiration?</h2>
+                <p>Let your AI stylist create a look from the pieces you already own.</p>
+            </div>
+            <a class="home-button home-button--light" href="{% url 'ai_generator' %}">Try AI Stylist</a>
+        </section>
+    </main>
 </body>
 </html>

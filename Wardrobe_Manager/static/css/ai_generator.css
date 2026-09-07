@@ -29,6 +29,23 @@ body.ai-stylist-page {
     padding: 76px 5vw 90px;
 }
 
+.page-navigation {
+    margin-bottom: 34px;
+    text-align: right;
+}
+
+.page-navigation a {
+    color: var(--ai-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.page-navigation a:hover {
+    color: var(--ai-rose);
+}
+
 .ai-stylist-hero {
     align-items: center;
     border-bottom: 1px solid var(--ai-line);

@@ -31,6 +31,24 @@ body.edit-delete-page {
     padding: 76px 28px 90px;
 }
 
+.page-navigation {
+    margin-bottom: 34px;
+    text-align: right;
+    width: 100%;
+}
+
+.page-navigation a {
+    color: var(--edit-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.page-navigation a:hover {
+    color: var(--edit-rose);
+}
+
 .edit-delete-hero {
     border-bottom: 1px solid var(--edit-line);
     margin-bottom: 36px;
@@ -395,6 +413,7 @@ body.edit-delete-page {
 .edit-delete-shell--confirmation {
     align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     min-height: 100vh;
     max-width: 680px;
