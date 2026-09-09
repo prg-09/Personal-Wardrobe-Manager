@@ -1,0 +1,261 @@
+:root {
+    --add-ivory: #f7f4ef;
+    --add-paper: #fffdfa;
+    --add-ink: #292725;
+    --add-muted: #817a73;
+    --add-line: #ded5ca;
+    --add-rose: #8d5e60;
+    --add-rose-soft: #f2e7e4;
+    --add-shadow: 0 20px 50px rgba(59, 48, 41, 0.09);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body.add-clothing-page {
+    background: var(--add-ivory);
+    color: var(--add-ink);
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.app-header {
+    align-items: center;
+    border-bottom: 1px solid var(--add-line);
+    display: flex;
+    gap: 28px;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 25px 5vw;
+    width: 100%;
+}
+
+.app-brand {
+    color: var(--add-ink);
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.app-nav {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.app-nav a {
+    color: var(--add-muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.app-nav a:hover,
+.app-nav .active {
+    color: var(--add-ink);
+}
+
+.add-clothing-shell {
+    margin: 0 auto;
+    max-width: 760px;
+    padding: 76px 28px 90px;
+}
+
+.page-navigation {
+    margin-bottom: 34px;
+    text-align: right;
+}
+
+.page-navigation a {
+    color: var(--add-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.page-navigation a:hover {
+    color: var(--add-rose);
+}
+
+.add-clothing-header {
+    margin: 0 auto 34px;
+    max-width: 590px;
+    text-align: center;
+}
+
+.add-clothing-kicker {
+    color: var(--add-rose);
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    margin: 0 0 15px;
+    text-transform: uppercase;
+}
+
+.add-clothing-header h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(2.7rem, 7vw, 5rem);
+    font-weight: normal;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+    margin: 0;
+}
+
+.add-clothing-subtitle {
+    color: var(--add-muted);
+    font-size: 1rem;
+    margin: 18px 0 0;
+}
+
+.add-clothing-card {
+    background: var(--add-paper);
+    border: 1px solid var(--add-line);
+    border-radius: 14px;
+    box-shadow: var(--add-shadow);
+    padding: 38px clamp(24px, 5vw, 58px) 42px;
+}
+
+.add-clothing-card h2 {
+    border-bottom: 1px solid var(--add-line);
+    font-family: Georgia, serif;
+    font-size: 1.7rem;
+    font-weight: normal;
+    margin: 0 0 28px;
+    padding-bottom: 18px;
+}
+
+.add-clothing-form p {
+    margin: 0 0 21px;
+}
+
+.add-clothing-form label {
+    color: var(--add-ink);
+    display: block;
+    font-size: 0.73rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.add-clothing-form input,
+.add-clothing-form select,
+.add-clothing-form textarea {
+    background: #fff;
+    border: 1px solid var(--add-line);
+    border-radius: 7px;
+    color: var(--add-ink);
+    font: inherit;
+    min-height: 48px;
+    padding: 12px 14px;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+    width: 100%;
+}
+
+.add-clothing-form input[type="file"] {
+    background: var(--add-rose-soft);
+    cursor: pointer;
+    padding: 10px;
+}
+
+.add-clothing-form input:focus,
+.add-clothing-form select:focus,
+.add-clothing-form textarea:focus {
+    border-color: var(--add-rose);
+    box-shadow: 0 0 0 3px rgba(141, 94, 96, 0.13);
+    outline: none;
+}
+
+.add-clothing-form .helptext {
+    color: var(--add-muted);
+    display: block;
+    font-size: 0.78rem;
+    margin-top: 7px;
+}
+
+.add-clothing-form .errorlist {
+    background: var(--add-rose-soft);
+    border-left: 3px solid var(--add-rose);
+    color: var(--add-rose);
+    font-size: 0.82rem;
+    list-style: none;
+    margin: 0 0 9px;
+    padding: 9px 12px;
+}
+
+.add-clothing-form .errorlist + input,
+.add-clothing-form .errorlist + select,
+.add-clothing-form .errorlist + textarea {
+    border-color: var(--add-rose);
+}
+
+.add-clothing-submit {
+    background: var(--add-ink);
+    border: 1px solid var(--add-ink);
+    border-radius: 999px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font: inherit;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin-top: 31px;
+    padding: 16px 24px;
+    text-transform: uppercase;
+    transition: background 180ms ease, transform 180ms ease;
+    width: 100%;
+}
+
+.add-clothing-submit:hover {
+    background: var(--add-rose);
+    border-color: var(--add-rose);
+    transform: translateY(-2px);
+}
+
+.add-clothing-back-link {
+    color: var(--add-muted);
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin: 24px auto 0;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+.add-clothing-back-link:hover {
+    color: var(--add-rose);
+}
+
+@media (max-width: 700px) {
+    .app-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 6vw;
+    }
+
+    .app-nav {
+        justify-content: flex-start;
+    }
+
+    .add-clothing-shell {
+        padding: 52px 18px 64px;
+    }
+
+    .add-clothing-card {
+        padding: 28px 20px 30px;
+    }
+}
